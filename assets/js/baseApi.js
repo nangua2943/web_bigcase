@@ -1,6 +1,6 @@
 // 每次发起ajax请求时，会先调用这个函数，拼接请求路径
 $.ajaxPrefilter (function(options) {
-  options.url = 'http://api-breakingnews-web.itheima.net' + options.url;
+  options.url = 'http://127.0.0.1:3007' + options.url;
   // 统一为有权限的接口，设置 headers 请求头 
   if (options.url.indexOf('/my/') !== -1) { 
     options.headers = { 
