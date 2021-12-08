@@ -34,12 +34,11 @@ $(function () {
     // 阻止表单默认提交事件
     e.preventDefault();
     var data = {
-      username: $('#form-reg[name="username"]').val(),
-      password: $('#form-reg[name="password"]').val()
+      username: $('#form-reg [name="username"]').val(),
+      password: $('#form-reg [name="password"]').val()
     };
     // 发起ajax 的 post请求
     $.post('/api/reguser', data, function (res) {
-      console.log(res);
       if (res.status !== 0) {
         return layer.msg(res.message);
       };
@@ -57,11 +56,12 @@ $(function () {
       url: '/api/login',
       // 快速获取表单数据
       data: $(this).serialize(),
-      success: function (e) {
+      success: function (res) {
         if (res.status !== 0) {
-          return layer.msg('登录失败');
+          return layer.msg(res.message);
         }
-        layer.msg('登录成功');
+        console.log(res);
+        layer.msg(res.message);
         // 将登录成功得到的 token 字符串，保存到 localStorage 中
         localStorage.setItem('token', res.token);
         // 跳转到后台主页
